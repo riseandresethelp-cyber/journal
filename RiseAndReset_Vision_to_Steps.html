@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rise & Reset — Vision to Steps</title>
+<style>
+  :root{ --purple:#6A0DAD; --border:#d8c8f0;}
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;color:#1f1f1f;font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+  header{padding:20px 16px;text-align:center;border-bottom:2px solid var(--border);background:linear-gradient(180deg,#fff,#faf7ff)}
+  h1{margin:.2rem 0;font-size:1.5rem;color:var(--purple)}
+  .sub{color:#444}
+  main{max-width:900px;margin:24px auto;padding:0 16px}
+  .card{background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 3px 14px rgba(0,0,0,.04);padding:18px;margin:14px 0}
+  label{font-weight:600;color:#3b2a57}
+  input[type="text"], textarea{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:#fff;outline:none}
+  textarea{min-height:110px;resize:vertical}
+  .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+  .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+  button{border:1px solid var(--purple);background:var(--purple);color:#fff;padding:10px 14px;border-radius:999px;cursor:pointer}
+  button.ghost{background:#fff;color:var(--purple)}
+  footer{max-width:900px;margin:24px auto 60px;padding:0 16px;color:#555;text-align:center}
+  .muted{font-size:.9rem;color:#666}
+  @media (max-width:640px){ .grid-3{grid-template-columns:1fr} }
+  @media print { header, .btns { display:none } .card{break-inside:avoid} }
+</style>
+</head>
+<body>
+<header>
+  <h1>🌿 Rise & Reset</h1>
+  <div class="sub">Vision → Plan → Daily Steps</div>
+</header>
+
+<main>
+  <div class="card">
+    <label for="vision">Vision Statement</label>
+    <textarea id="vision" placeholder="Describe the outcome you want. Be vivid and specific."></textarea>
+  </div>
+
+  <div class="card">
+    <label for="milestones">Milestones (3)</label>
+    <div class="grid-3">
+      <input id="m1" type="text" placeholder="Milestone 1">
+      <input id="m2" type="text" placeholder="Milestone 2">
+      <input id="m3" type="text" placeholder="Milestone 3">
+    </div>
+  </div>
+
+  <div class="card">
+    <label>Weekly Focus</label>
+    <div class="grid-3">
+      <textarea id="w1" placeholder="Week 1 focus"></textarea>
+      <textarea id="w2" placeholder="Week 2 focus"></textarea>
+      <textarea id="w3" placeholder="Week 3 focus"></textarea>
+    </div>
+  </div>
+
+  <div class="card">
+    <label for="today">Today’s 1–3 Steps</label>
+    <textarea id="today" placeholder="Small, specific actions you will take today."></textarea>
+    <div class="btns">
+      <button id="save">Save</button>
+      <button class="ghost" id="export">Export JSON</button>
+      <button class="ghost" id="print">Print</button>
+      <button class="ghost" id="clear">Clear</button>
+    </div>
+    <div class="muted" id="status"></div>
+  </div>
+</main>
+
+<footer class="muted">Saved privately to your device via localStorage. Export or print anytime.</footer>
+
+<script>
+const ids=["vision","m1","m2","m3","w1","w2","w3","today"];
+const KEY="rr_vision_to_steps_v1";
+function load(){try{const d=JSON.parse(localStorage.getItem(KEY)||"{}");ids.forEach(id=>{if(d[id])document.getElementById(id).value=d[id];});}catch(e){}}
+function collect(){const d={};ids.forEach(id=>d[id]=document.getElementById(id).value);return d;}
+function save(manual=false){localStorage.setItem(KEY,JSON.stringify(collect()));document.getElementById("status").textContent=manual?"Saved.":"Autosaved.";}
+document.getElementById("save").onclick=()=>save(true);
+document.getElementById("export").onclick=()=>{const blob=new Blob([JSON.stringify(collect(),null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="RiseAndReset_VisionToSteps.json";a.click();};
+document.getElementById("print").onclick=()=>window.print();
+document.getElementById("clear").onclick=()=>{if(confirm("Clear all fields? This only clears this device’s local copy.")){ids.forEach(id=>document.getElementById(id).value="");localStorage.removeItem(KEY);document.getElementById("status").textContent="Cleared."}};
+ids.forEach(id=>document.getElementById(id).addEventListener("input",()=>save(false)));
+load();
+</script>
+</body>
+</html>
