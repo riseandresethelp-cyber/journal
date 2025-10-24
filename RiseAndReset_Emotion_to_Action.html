@@ -8,26 +8,45 @@
 <title>Rise & Reset Journal - Emotion to Action</title>
 
 <style>
-  :root{ --purple:#6A0DAD; --border:#d8c8f0; }
+  :root { --purple:#6A0DAD; --border:#d8c8f0; --bg1:#efe6fb; --bg2:#e2d4f8; }
   *{box-sizing:border-box}
-  body{margin:0;background:#fff;color:#1f1f1f;font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
-  header{padding:20px 16px;text-align:center;border-bottom:2px solid var(--border);background:linear-gradient(180deg,#fff,#faf7ff)}
-  h1{margin:.2rem 0;font-size:1.5rem;color:var(--purple)}
-  .sub{color:#444}
+  body{
+    margin:0;
+    font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+    color:#1f1f1f;
+    background: radial-gradient(1200px 400px at 50% -10%, var(--bg1), transparent),
+                linear-gradient(180deg,var(--bg1),var(--bg2));
+  }
+  header{
+    padding:20px 16px;
+    text-align:center;
+    border-bottom:2px solid var(--border);
+    background:linear-gradient(180deg,#ffffff,#f6efff);
+  }
+  h1{margin:.2rem 0;font-size:1.6rem;color:var(--purple)}
+  .sub{color:#5b4693}
   main{max-width:900px;margin:24px auto;padding:0 16px}
-  .card{background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 3px 14px rgba(0,0,0,.04);padding:18px;margin:14px 0}
+  .card{
+    background:#fff;border:1px solid var(--border);border-radius:14px;
+    box-shadow:0 6px 18px rgba(106,13,173,.08);
+    padding:18px;margin:14px 0
+  }
   label{font-weight:600;color:#3b2a57}
-  input[type="text"], input[type="date"], textarea, select{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:#fff;outline:none}
+  input[type="text"], input[type="date"], textarea, select{
+    width:100%;padding:10px 12px;border:1px solid var(--border);
+    border-radius:10px;background:#fff;outline:none
+  }
   textarea{min-height:110px;resize:vertical}
   .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
-  button{border:1px solid var(--purple);background:var(--purple);color:#fff;padding:10px 14px;border-radius:999px;cursor:pointer}
+  button{border:1px solid var(--purple);background:var(--purple);color:#fff;
+    padding:10px 14px;border-radius:999px;cursor:pointer}
   button.ghost{background:#fff;color:var(--purple)}
   footer{max-width:900px;margin:24px auto 60px;padding:0 16px;color:#555;text-align:center}
   .muted{font-size:.9rem;color:#666}
   @media (max-width:640px){ .grid-2{grid-template-columns:1fr} }
-  @media print { header, .btns { display:none } .card{break-inside:avoid} }
 </style>
+
 </head>
 <body>
 <header>
