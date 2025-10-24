@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Rise & Reset Journals</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: linear-gradient(180deg, #f9f6ff, #e8dcfa);
+      color: #3a2a63;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    h1 { font-size: 2rem; margin-bottom: 0.5em; }
+    p { font-size: 1.1rem; margin-bottom: 1.5em; }
+    a {
+      display: inline-block;
+      margin: 0.5em;
+      padding: 0.75em 1.5em;
+      border-radius: 999px;
+      text-decoration: none;
+      background-color: #6a0dad;
+      color: #fff;
+      font-weight: 600;
+    }
+    a:hover { background-color: #55238c; }
+  </style>
+</head>
+<body>
+  <h1>Rise & Reset Journals</h1>
+  <p>Choose a journal to open:</p>
+  <a href="RiseAndReset_Emotion_to_Action.html">Emotion → Action</a>
+  <a href="RiseAndReset_Vision_to_Steps.html">Vision → Steps</a>
+  <footer style="margin-top:3em;font-size:0.9rem;color:#555;">
+    © Rise & Reset
+  </footer>
+</body>
+</html>
